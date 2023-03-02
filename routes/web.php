@@ -1,12 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\logincontroller;
-use App\Http\Controllers\registercontroller;
 use App\Http\Controllers\dashbordcontroller;
-use App\http\Controllers\profileupdatecontroller;
-use App\Http\Controllers\passwordchangecontroller;
 use App\Http\Controllers\forgotpasswordcontroller;
+use App\Http\Controllers\logincontroller;
+use App\Http\Controllers\passwordchangecontroller;
+use App\http\Controllers\profileupdatecontroller;
+use App\Http\Controllers\registercontroller;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\userdatashoecontroller;
+use App\Http\Controllers\userdatamanagecontroller;
+use App\Http\Controllers\addusercontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +44,17 @@ Route::POST('update-password', [passwordchangecontroller::class,'passwordUpdate'
 Route::POST('password/forgot', [forgotpasswordcontroller::class,'sendResetLink'])->name('forgot.password.link');
 Route::GET('password/forgot/{token}', [forgotpasswordcontroller::class,'ShowResetform'])->name('reset.password.form');
 Route::POST('password/reset', [forgotpasswordcontroller::class,'resetpassword'])->name('reset.password');
+
+Route::get('/userdata', [userdatashoecontroller::class, 'index'])->name('users.index');
+
+Route::delete('/delete/{id}', [userdatamanagecontroller::class,"destroy"])->name('users.delete');
+
+// -------------------------- user management ----------------------//
+Route::get('/update/{id}', [userdatamanagecontroller::class,"edit"])->name('users.edit');
+Route::post('/update', [userdatamanagecontroller::class,"usetredit"])->name('update.user');
+
+Route::get('/adduser', [addusercontroller::class,"index"]);
+
+// route::POST('register-data' , [registercontroller::class,'postRegistration'])->name('register.data');
+
+route::POST('user-add' , [addusercontroller::class,'adduser'])->name('user.add');

@@ -328,7 +328,7 @@
           <li> <a href="tables.html" class="waves-effect"><i data-icon="O" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Tables<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">7</span></span></a>
             <ul class="nav nav-second-level">
               <li><a href="basic-table.html">Basic Tables</a></li>
-              <li><a href="data-table.html">Data Table</a></li>
+              <li><a href="/userdata">Data Table</a></li>
               <li><a href="bootstrap-tables.html">Bootstrap Tables</a></li>
               <li><a href="responsive-tables.html">Responsive Tables</a></li>
               <li><a href="editable-tables.html">Editable Tables</a></li>

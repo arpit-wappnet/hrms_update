@@ -10,6 +10,8 @@
 <title>Elite Admin - is a responsive admin template</title>
 <!-- Bootstrap Core CSS -->
 <link href="{{url('bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{url('plugins/bower_components/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 <!-- animation CSS -->
 <link href="{{url('css/animate.css')}}" rel="stylesheet">
 <!-- Custom CSS -->
@@ -32,6 +34,12 @@
     ga('send', 'pageview');
 
   </script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 </head>
 
 
