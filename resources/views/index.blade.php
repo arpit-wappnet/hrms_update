@@ -1,14 +1,6 @@
 @extends('layouts.main')
 @section('main-container')
-{{-- @if(Session::has('errors'))
-    <p class="text-danger"> {{ Session::get('errors')}}</p>
-    @endif
-    @if(Session::has('success'))
-    <p class="text-success"> {{ Session::get('success')}}</p>
-    <div class="preloader">
-        <div class="cssload-speeding-wheel"></div>
-    </div>
-    @endif --}}
+
 <div class="preloader">
     <div class="cssload-speeding-wheel"></div>
   </div>
@@ -90,6 +82,9 @@
 <script src="{{url('js/custom.min.js')}}"></script>
 <!--Style Switcher -->
 <script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+ {{-- validation --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 </body>
 </html>
 @endsection

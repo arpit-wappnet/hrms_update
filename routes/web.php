@@ -58,3 +58,11 @@ Route::get('/adduser', [addusercontroller::class,"index"]);
 // route::POST('register-data' , [registercontroller::class,'postRegistration'])->name('register.data');
 
 route::POST('user-add' , [addusercontroller::class,'adduser'])->name('user.add');
+
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->middleware('auth')->group(function(){
+    
+
+});
