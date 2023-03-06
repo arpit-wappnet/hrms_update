@@ -1,5 +1,8 @@
 @extends('layouts.main')
 @section('main-container')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 <body>
 <!-- Preloader -->
 <!-- Preloader -->
@@ -188,7 +191,7 @@
                 <ul class="dropdown-menu animated flipInY">
                   <li><a href="{{ route('show.profile') }}"><i class="ti-user"></i> My Profile</a></li>
                   <li><a href="/passwordupdate"><i class="fas fa-eye"></i> password Change</a></li>
-                  <li><a href="{{ route('logout.perform') }}"><i class="fa fa-power-off"></i> Logout</a></li>
+                  <li><a id="logout" href="{{ route('logout.perform') }}"><i id="logout" class="fa fa-power-off"></i> Logout</a></li>
                 </ul>
           </div>
         </div>
@@ -516,6 +519,9 @@
 <script src="{{url('js/custom.min.js')}}"></script>
 <!--Style Switcher -->
 <script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+
+
+
 </body>
 </html>
 @endsection

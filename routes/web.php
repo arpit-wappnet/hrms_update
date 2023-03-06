@@ -1,11 +1,13 @@
 <?php
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashbordController;
+use App\Http\Controllers\ProfileUpdatecontroller;
 
-use App\Http\Controllers\dashbordcontroller;
 use App\Http\Controllers\forgotpasswordcontroller;
-use App\Http\Controllers\logincontroller;
+
 use App\Http\Controllers\passwordchangecontroller;
-use App\http\Controllers\profileupdatecontroller;
-use App\Http\Controllers\registercontroller;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userdatashoecontroller;
 use App\Http\Controllers\userdatamanagecontroller;
@@ -23,20 +25,26 @@ use App\Http\Controllers\addusercontroller;
 |
 */
 
+// -----------------------------login----------------------------------------//
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::post('/login-check', 'login')->name('check.login');
+    Route::get('/logout', 'logout')->name('logout.perform');
+});
+// -----------------------------Registration----------------------------------------//
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'register');
+    Route::post('/register-data', 'Register_user')->name('register.data');
+});
+// -----------------------------Dashboard----------------------------------------//
+route::get('/dashbord' , [DashbordController::class,'dashbord'])->name('dashbord');
+// -----------------------------Profile update----------------------------------------//
+Route::controller(ProfileUpdateController::class)->group(function () {
+    Route::get('/profile-show', 'profile_update_show')->name('show.profile');
+    Route::post('/update-profile', 'profile_Update')->name('update.profile');
+});
 
-route::get('/' , [logincontroller::class,'index']);
 
-route::get('/register' , [registercontroller::class,'register']);
-route::POST('register-data' , [registercontroller::class,'postRegistration'])->name('register.data');
-
-route::POST('login-data' , [logincontroller::class,'checkLogin'])->name('check.login');
-
-Route::GET('/logout', [logincontroller::class,'logout'])->name('logout.perform');
-
-route::get('/dashbord' , [dashbordcontroller::class,'dashbord'])->name('dashbord');
-
-route::get('/profileupdate' , [profileupdatecontroller::class,'profile_update'])->name('show.profile');
-Route::POST('update-profile', [profileupdatecontroller::class,'profileUpdate'])->name('update.profile');
 
 route::get('/passwordupdate' , [passwordchangecontroller::class,'passwordupadteshow']);
 Route::POST('update-password', [passwordchangecontroller::class,'passwordUpdate'])->name('update-password');
@@ -55,14 +63,11 @@ Route::post('/update', [userdatamanagecontroller::class,"usetredit"])->name('upd
 
 Route::get('/adduser', [addusercontroller::class,"index"]);
 
-// route::POST('register-data' , [registercontroller::class,'postRegistration'])->name('register.data');
+
 
 route::POST('user-add' , [addusercontroller::class,'adduser'])->name('user.add');
 
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::prefix('admin')->middleware('auth')->group(function(){
-    
 
-});

@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class profileupdatecontroller extends Controller
 {
-    public function profile_update(){
+    public function profile_update_show(){
 
         return view('profileupdate');
     }
 
-    public function profileUpdate(Request $request)
+    public function profile_Update(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|min:4|string|max:255',
