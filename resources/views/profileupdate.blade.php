@@ -24,32 +24,8 @@
           <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
           </a>
           <ul class="dropdown-menu mailbox animated bounceInDown">
-            <li>
-              <div class="drop-title">You have 4 new messages</div>
-            </li>
-            <li>
-              <div class="message-center"> <a href="#">
-                <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                <div class="mail-contnet">
-                  <h5>Pavan kumar</h5>
-                  <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
-                </a> <a href="#">
-                <div class="user-img"> <img src="../plugins/images/users/sonu.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                <div class="mail-contnet">
-                  <h5>Sonu Nigam</h5>
-                  <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
-                </a> <a href="#">
-                <div class="user-img"> <img src="../plugins/images/users/arijit.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-                <div class="mail-contnet">
-                  <h5>Arijit Sinh</h5>
-                  <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
-                </a> <a href="#">
-                <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                <div class="mail-contnet">
-                  <h5>Pavan kumar</h5>
-                  <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                </a> </div>
-            </li>
+
+
             <li> <a class="text-center" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="fa fa-angle-right"></i> </a></li>
           </ul>
           <!-- /.dropdown-messages -->
@@ -322,15 +298,7 @@
           </ul>
         </li>
         <li> <a href="tables.html" class="waves-effect"><i data-icon="O" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Tables<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">7</span></span></a>
-          <ul class="nav nav-second-level">
-            <li><a href="basic-table.html">Basic Tables</a></li>
-            <li><a href="data-table.html">Data Table</a></li>
-            <li><a href="bootstrap-tables.html">Bootstrap Tables</a></li>
-            <li><a href="responsive-tables.html">Responsive Tables</a></li>
-            <li><a href="editable-tables.html">Editable Tables</a></li>
-            <li><a href="foo-tables.html">FooTables</a></li>
-            <li><a href="jsgrid.html">JsGrid Tables</a></li>
-          </ul>
+
         </li>
         <li> <a href="widgets.html" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Widgets</span></a> </li>
         <li> <a href="#" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Icons<span class="fa arrow"></span></span></a>
@@ -393,23 +361,17 @@
             <br>
             <div class="row">
               <div class="col-sm-12 col-xs-12">
-                <form action="{{ route('update.profile') }}" method="post">
+                <form action="{{ route('update.profile') }}" method="post" name="profile_update" id="profile_update">
                     @csrf
                   <div class="form-group">
-                    <label for="exampleInputEmail1">User Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Username" value="{{Auth::user()->name}}" name="name">
+                    <label for="name">User Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Username" value="{{Auth::user()->name}}" name="name">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                    <label for="email">Email address</label>
                     <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{Auth::user()->email}}">
                   </div>
-                  <div class="form-group">
-                    <div class="checkbox checkbox-success">
-                      <input id="checkbox1" type="checkbox">
-                      <label for="checkbox1"> Remember me </label>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                  <button type="submit"  class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
                 </form>
               </div>
             </div>
@@ -497,6 +459,49 @@
 <script src="{{url('js/custom.min.js')}}"></script>
 <!--Style Switcher -->
 <script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+{{-- validation --}}
+{{-- validation --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    jQuery('#profile_update').validate({
+        rules:{
+            name:{
+                required:true,
+            },
+            email:{
+                required:true,
+                email:true
+            },
+
+        },
+        messages:{
+            name:{
+                required: "Please enter username",
+            },
+            email:{
+                required:"Please enter email",
+                email:"Please enter valid email",
+            },
+
+        },
+        submitHandler:function(form){
+          swal({
+            position: 'top-end',
+            title: "Login Successful!",
+            text: "Thank you for Login with us.",
+            type: 'success',
+            timer: 3000,
+            showConfirmButton: false,
+
+          }).then(function(){
+            form.submit();
+          });
+        }
+      });
+</script>
 </body>
 </html>
 @endsection

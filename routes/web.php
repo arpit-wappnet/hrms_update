@@ -3,16 +3,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\ProfileUpdatecontroller;
+use App\Http\Controllers\UserController;
 
-use App\Http\Controllers\forgotpasswordcontroller;
-
-use App\Http\Controllers\passwordchangecontroller;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\userdatashoecontroller;
-use App\Http\Controllers\userdatamanagecontroller;
-use App\Http\Controllers\addusercontroller;
 
+use Illuminate\Auth\Events\Login;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +23,12 @@ use App\Http\Controllers\addusercontroller;
 
 // -----------------------------login----------------------------------------//
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/', 'index');
+    Route::get('/', 'index')->name('login');
     Route::post('/login-check', 'login')->name('check.login');
     Route::get('/logout', 'logout')->name('logout.perform');
+    Route::post('/password/forgot', 'sendResetLink')->name('forgot.password.link');
+    Route::get('/password/forgot/{token}', 'ShowResetform')->name('reset.password.form');
+    Route::post('/password/reset', 'resetpassword')->name('reset.password');
 });
 // -----------------------------Registration----------------------------------------//
 Route::controller(RegisterController::class)->group(function () {
@@ -42,32 +41,25 @@ route::get('/dashbord' , [DashbordController::class,'dashbord'])->name('dashbord
 Route::controller(ProfileUpdateController::class)->group(function () {
     Route::get('/profile-show', 'profile_update_show')->name('show.profile');
     Route::post('/update-profile', 'profile_Update')->name('update.profile');
+    Route::get('/passwordupdate', 'password_upadte_show');
+    Route::post('/update-password','passwordUpdate')->name('update-password');
+});
+// -----------------------------Get Admin User List And management----------------------------------------//
+Route::controller(UserController::class)->group(function () {
+    Route::get('/userdata', 'User_data_show')->name('users.index');
+    Route::get('/adduser', 'add_user_show');
+    Route::post('/add-user','add_user')->name('user.add');  // New User add
+    Route::get('/update/{id}', 'edit')->name('users.edit'); // edit User page show
+    Route::post('/update', 'user_edit')->name('update.user'); // edit user
+    Route::delete('/delete/{id}', 'destroy')->name('users.delete'); // delete user
 });
 
 
 
-route::get('/passwordupdate' , [passwordchangecontroller::class,'passwordupadteshow']);
-Route::POST('update-password', [passwordchangecontroller::class,'passwordUpdate'])->name('update-password');
-
-Route::POST('password/forgot', [forgotpasswordcontroller::class,'sendResetLink'])->name('forgot.password.link');
-Route::GET('password/forgot/{token}', [forgotpasswordcontroller::class,'ShowResetform'])->name('reset.password.form');
-Route::POST('password/reset', [forgotpasswordcontroller::class,'resetpassword'])->name('reset.password');
-
-Route::get('/userdata', [userdatashoecontroller::class, 'index'])->name('users.index');
-
-Route::delete('/delete/{id}', [userdatamanagecontroller::class,"destroy"])->name('users.delete');
-
-// -------------------------- user management ----------------------//
-Route::get('/update/{id}', [userdatamanagecontroller::class,"edit"])->name('users.edit');
-Route::post('/update', [userdatamanagecontroller::class,"usetredit"])->name('update.user');
-
-Route::get('/adduser', [addusercontroller::class,"index"]);
 
 
 
-route::POST('user-add' , [addusercontroller::class,'adduser'])->name('user.add');
 
-// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 

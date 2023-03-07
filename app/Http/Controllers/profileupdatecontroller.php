@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class profileupdatecontroller extends Controller
 {
@@ -26,4 +28,25 @@ class profileupdatecontroller extends Controller
 
         return back()->with('message', 'Profile Updated');
     }
+
+    public function password_upadte_show(){
+        return view('passwordchange');
+    }
+
+    public function passwordUpdate(Request $request){
+
+        #Match The Old Password
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with("status", "Password changed successfully!");
+    }
+
+
+
 }

@@ -185,15 +185,11 @@
         <div class="dropdown user-pro-body">
           <div><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div>
           <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
-              <ul class="dropdown-menu animated flipInY">
-                <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-power-off"></i> Logout</a></li>
-              </ul>
+          <ul class="dropdown-menu animated flipInY">
+            <li><a href="{{ route('show.profile') }}"><i class="ti-user"></i> My Profile</a></li>
+            <li><a href="/passwordupdate"><i class="fas fa-eye"></i> password Change</a></li>
+            <li><a id="logout" href="{{ route('logout.perform') }}"><i id="logout" class="fa fa-power-off"></i> Logout</a></li>
+          </ul>
         </div>
       </div>
       <ul class="nav" id="side-menu">
@@ -377,14 +373,12 @@
     <div class="container-fluid">
       <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Notifications</h4>
+          <h4 class="page-title">Password Update</h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-          <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
           <ol class="breadcrumb">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Ui Elements</a></li>
-            <li class="active">Notifications</li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Password update</a></li>
           </ol>
         </div>
         <!-- /.col-lg-12 -->
@@ -397,16 +391,16 @@
             <br>
             <div class="row">
               <div class="col-sm-12 col-xs-12">
-                <form action="{{ route('update-password') }}" method="POST">
+                <form action="{{ route('update-password') }}" name="password_update"name="password_update" id="password_update" method="POST">
                     @csrf
                     <div class="card-body">
                   <div class="form-group">
                     <label for="oldPasswordInput">Old Password</label>
-                    <input type="text" class="form-control  @error('old_password') is-invalid @enderror" id="oldPasswordInput" placeholder="Enter Old Password"  name="old_password">
+                    <input type="text" class="form-control" id="oldPasswordInput" placeholder="Enter Old Password"  name="old_password">
                   </div>
                   <div class="form-group">
                     <label for="newPasswordInput">New password</label>
-                    <input type="text" name="new_password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput" placeholder="Enter New password">
+                    <input type="text" name="new_password" class="form-control" id="newPasswordInput" placeholder="Enter New password">
 
                   </div>
                   <div class="form-group">
@@ -502,6 +496,80 @@
 <script src="{{url('js/custom.min.js')}}"></script>
 <!--Style Switcher -->
 <script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+{{-- validation  --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    jQuery('#password_update').validate({
+        rules:{
+            old_password:{
+                required:true,
+                minlength:5,
+                strong_password: true,
+            },
+            new_password:{
+                required:true,
+                minlength:5,
+                strong_password: true,
+            },
+            new_password_confim:{
+                required:true,
+                minlength:5,
+                strong_password: true,
+            },
+        },
+        messages:{
+            old_password:{
+                required:"Please enter email",
+                email:"Please enter valid email",
+            },
+            new_password:{
+                required:"Please enter your password",
+                minlength:"Password must be 5 char long"
+            },
+            new_password_confim:{
+                required:"Please enter your password",
+                minlength:"Password must be 5 char long"
+            },
+        },
+        submitHandler:function(form){
+          swal({
+            position: 'top-end',
+            title: "password update Successful!",
+            text: "Thank you for with us.",
+            type: 'success',
+            timer: 3000,
+            showConfirmButton: false,
+
+          }).then(function(){
+            form.submit();
+          });
+        }
+      });
+    $.validator.addMethod("strong_password", function(value, element) {
+        let password = value;
+        if (!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%&])(.{8,20}$)/.test(password))) {
+            return false;
+        }
+        return true;
+    }, function(value, element) {
+        let password = $(element).val();
+        if (!(/^(.{8,20}$)/.test(password))) {
+            return 'Password must be between 8 to 20 characters long.';
+        } else if (!(/^(?=.*[A-Z])/.test(password))) {
+            return 'Password must contain at least one uppercase.';
+        } else if (!(/^(?=.*[a-z])/.test(password))) {
+            return 'Password must contain at least one lowercase.';
+        } else if (!(/^(?=.*[0-9])/.test(password))) {
+            return 'Password must contain at least one digit.';
+        } else if (!(/^(?=.*[@#$%&])/.test(password))) {
+            return "Password must contain special characters from @#$%&.";
+        }
+        return false;
+    });
+</script>
 </body>
 </html>
 @endsection

@@ -168,7 +168,14 @@
 
 	},
 	submitHandler:function(form){
-		form.submit();
+        swal({
+            position: 'top-end',
+            title: "Reset Linl Sent Successful!",
+            text: "Thank you for with us.",
+            type: 'success',
+            timer: 6000,
+            showConfirmButton: false,
+          }).form.submit();
 	}
   });
 

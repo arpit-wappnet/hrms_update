@@ -377,14 +377,13 @@
     <div class="container-fluid">
       <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Notifications</h4>
+          <h4 class="page-title">Add User data</h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
           <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
           <ol class="breadcrumb">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Ui Elements</a></li>
-            <li class="active">Notifications</li>
+            <li><a href="#">User Data Table</a></li>
+            <li><a href="#">Add User</a></li>
           </ol>
         </div>
         <!-- /.col-lg-12 -->
@@ -397,15 +396,15 @@
             <br>
             <div class="row">
               <div class="col-sm-12 col-xs-12">
-                <form action="{{ route('user.add') }}" method="post">
+                <form action="{{ route('user.add') }}" method="post" name="adduserform" id="adduserform" >
                     @csrf
                   <div class="form-group">
-                    <label for="exampleInputEmail1">User Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Username" value="" name="name">
+                    <label for="name">User Name</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Username" name="name">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="">
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                     <input type="hidden" id="pdsId" name="password" value="Wappnet@2023">
                   </div>
 
@@ -497,6 +496,39 @@
 <script src="{{url('js/custom.min.js')}}"></script>
 <!--Style Switcher -->
 <script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+{{-- validation --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    jQuery(function($) {
+        $('#adduserform').validate({
+            rules:{
+                name:{
+                    required: true
+                },
+                email:{
+                    required:true,
+                    email:true
+                }
+            },
+            messages:{
+                name:{
+                    required:"Please enter Username"
+                },
+                email:{
+                    required:"Please enter email",
+                    email:"Please enter valid email"
+                }
+            },
+            submitHandler:function(form){
+                form.submit();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
 @endsection
