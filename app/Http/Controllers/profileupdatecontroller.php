@@ -6,15 +6,17 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\FlareClient\View;
 
 class profileupdatecontroller extends Controller
 {
-    public function profile_update_show(){
+    public function profile_update_show(): \Illuminate\Contracts\View\View
+    {
 
         return view('profileupdate');
     }
 
-    public function profile_Update(Request $request)
+    public function profile_Update(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:4|string|max:255',
@@ -29,11 +31,13 @@ class profileupdatecontroller extends Controller
         return back()->with('message', 'Profile Updated');
     }
 
-    public function password_upadte_show(){
+    public function password_upadte_show(): \Illuminate\View\View
+    {
         return view('passwordchange');
     }
 
-    public function passwordUpdate(Request $request){
+    public function passwordUpdate(Request $request): \Illuminate\Http\RedirectResponse
+    {
 
         #Match The Old Password
         if(!Hash::check($request->old_password, auth()->user()->password)){

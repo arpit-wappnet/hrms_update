@@ -11,7 +11,7 @@ class registercontroller extends Controller
         return view('register');
     }
 
-    public function Register_user(Request $request)
+    public function Register_user(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'name' => 'required',

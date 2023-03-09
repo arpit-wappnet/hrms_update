@@ -30,12 +30,28 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashbord');
-        } else {
-            return back()->with('errors', 'Invalid data');
-        }
-    }
 
+                 if(Auth::check()){
+                // admin role == 1
+                // user  role == 0
+                if(Auth::user()->role == '1'){
+                    return redirect()->route('dashbord');
+
+                } elseif(Auth::user()->role == '0') {
+
+                    return redirect()->route('user.dashbord');
+                }
+
+
+            } else {
+
+
+                return redirect('/')->with('massage','login to Access Admin');
+            }
+
+        }
+
+    }
     public function logout()  : RedirectResponse
     {
         Auth::logout();

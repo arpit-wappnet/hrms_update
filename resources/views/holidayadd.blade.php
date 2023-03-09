@@ -1,11 +1,5 @@
 @extends('layouts.main')
 @section('main-container')
-
-<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <body class="fix-sidebar">
 <!-- Preloader -->
 <div class="preloader">
@@ -187,7 +181,7 @@
   <!-- Left navbar-header -->
   <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-       <div class="user-profile">
+      <div class="user-profile">
         <div class="dropdown user-pro-body">
           <div><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div>
           <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
@@ -264,7 +258,7 @@
             <li><a href="bootstrap.html">Bootstrap UI</a></li>
           </ul>
         </li>
-        <li> <a href="forms.html" class="waves-effect"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Forms<span class="fa arrow"></span></span></a>
+        <li> <a href="forms.html" class="waves-effect active"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Forms<span class="fa arrow"></span></span></a>
           <ul class="nav nav-second-level">
             <li><a href="form-basic.html">Basic Forms</a></li>
             <li><a href="form-layout.html">Form Layout</a></li>
@@ -331,7 +325,7 @@
             <li><a href="extra-charts.html">Extra Charts</a></li>
           </ul>
         </li>
-        <li> <a href="tables.html" class="waves-effect active"><i data-icon="O" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Tables<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">7</span></span></a>
+        <li> <a href="tables.html" class="waves-effect"><i data-icon="O" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Tables<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">7</span></span></a>
           <ul class="nav nav-second-level">
             <li><a href="basic-table.html">Basic Tables</a></li>
             <li><a href="data-table.html">Data Table</a></li>
@@ -377,93 +371,207 @@
       </ul>
     </div>
   </div>
-  {{-- <!-- Left navbar-header end -->
-  dd($data); --}}
-  {{-- <input type="text" value="{{ Auth::user()->email() }}"> --}}
-  {{-- @if(Auth::user()->role(1)) --}}
+  <!-- Left navbar-header end -->
   <!-- Page Content -->
   <div id="page-wrapper">
     <div class="container-fluid">
       <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">User Data Table</h4>
+          <h4 class="page-title">Add Holiday</h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+          <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
           <ol class="breadcrumb">
-            <li><a href="#">User</a></li>
+            <li><a href="#">Dashbord</a></li>
+            <li><a href="#">Holiday</a></li>
+            <li><a href="#">Add Holiday</a></li>
           </ol>
         </div>
         <!-- /.col-lg-12 -->
       </div>
-      <!-- /row -->
-      <div>
-      <button type="button" class="btn btn-primary" data-toggle="modal"><a href="/adduser">Add User </a></button>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-sm-12">
+      {{-- rajubhai --}}
+     <div class="row">
+        <div class="col-md-6">
           <div class="white-box">
-            <h3 class="box-title m-b-0">Data Table</h3>
-            <div class="table-responsive">
-            <table id="myTable" class="table user_datatable table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th width="100px">Actiom</th>
-                </tr>
-              </thead>
-              <tbody> </tbody>
-            </table>
+            <h3 class="box-title m-b-0"> Add Holiday </h3>
+            <br>
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <form action="{{ route('add.holiday') }}" method="POST" name="holidayform" id="holidayform" >
+                    @csrf
+                  <div class="form-group">
+                    <label for="name">Title</label>
+                    <input type="text" name="title" class="form-control" id="title" placeholder="Enter Holiday Title" >
+                  </div>
+                  <div class="example">
+                    <h5 class="box-title m-t-30">Date</h5>
+                    <div class="input-group">
+                      <input type="text" name="date" class="form-control complex-colorpicker" id="datepicker-autoclose" placeholder="dd/mm/yyyy">
+                      <span class="input-group-addon"><i class="icon-calender"></i></span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <div class="checkbox checkbox-success">
+                      <input id="checkbox1" type="checkbox">
+                      <label for="checkbox1">This is an optional holiday</label>
+                    </div>
+                  </div>
+                  <br>
+
+                  <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-        <script type="text/javascript">
-           jQuery(function($){
-    var table = $('.user_datatable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('users.index') }}",
-        columns: [
-            {data: 'id', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
-            {data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
-    });
-});
-</script>
 
+      <!-- .right-sidebar -->
+      <div class="right-sidebar">
+        <div class="slimscrollright">
+          <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+          <div class="r-panel-body">
+            <ul>
+              <li><b>Layout Options</b></li>
+              <li>
+                <div class="checkbox checkbox-info">
+                  <input id="checkbox1" type="checkbox" class="fxhdr">
+                  <label for="checkbox1"> Fix Header </label>
+                </div>
+              </li>
+              <li>
+                <div class="checkbox checkbox-warning">
+                  <input id="checkbox2" type="checkbox" checked="" class="fxsdr">
+                  <label for="checkbox2"> Fix Sidebar </label>
+                </div>
+              </li>
+              <li>
+                <div class="checkbox checkbox-success">
+                  <input id="checkbox4" type="checkbox" class="open-close">
+                  <label for="checkbox4" > Toggle Sidebar </label>
+                </div>
+              </li>
+            </ul>
+            <ul id="themecolors" class="m-t-20">
+              <li><b>With Light sidebar</b></li>
+              <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
+              <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+              <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+              <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+              <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+              <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
+              <li><b>With Dark sidebar</b></li>
+              <br/>
+              <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+              <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+              <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
 
-
+              <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+              <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+              <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+            </ul>
+            <ul class="m-t-20 chatonline">
+              <li><b>Chat option</b></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img"  class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img"  class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /.right-sidebar -->
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+  </div>
+  <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
 <!-- jQuery -->
 <script src="{{url('plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="{{url('bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- Menu Plugin JavaScript -->
 <script src="{{url('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js')}}"></script>
+
 <!--slimscroll JavaScript -->
 <script src="{{url('js/jquery.slimscroll.js')}}"></script>
 <!--Wave Effects -->
 <script src="{{url('js/waves.js')}}"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{{url('js/custom.min.js')}}"></script>
-<script src="{{url('plugins/bower_components/datatables/jquery.dataTables.min.js')}}"></script>
-{{-- popup js --}}
-
-<!-- start - This is for export functionality only -->
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-
-
 <!--Style Switcher -->
-<script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js'"></script>
+<script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+{{-- validation --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    jQuery(function($) {
+        $('#adduserform').validate({
+            rules:{
+                name:{
+                    required: true
+                },
+                email:{
+                    required:true,
+                    email:true
+                }
+            },
+            messages:{
+                name:{
+                    required:"Please enter Username"
+                },
+                email:{
+                    required:"Please enter email",
+                    email:"Please enter valid email"
+                }
+            },
+            submitHandler:function(form){
+                form.submit();
+            }
+        });
+    });
+</script>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Include date picker plugin JS and CSS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+
+<script>
+  $(document).ready(function() {
+  // Initialize the date picker
+  $('#datepicker-autoclose').datepicker({
+    autoclose: true,
+    format: 'dd/mm/yyyy',
+  });
+
+  // Add click event listener to the calendar icon to open the date picker
+  $('.icon-calendar').on('click', function() {
+    $('#datepicker-autoclose').datepicker('show');
+  });
+
+  // Add changeDate event listener to set the input value
+  $('#datepicker-autoclose').on('changeDate', function(e) {
+    // Get the selected date in the desired format
+    const selectedDate = e.format('dd/mm/yyyy');
+  });
+});
+
+</script>
+
+
 </body>
 </html>
 @endsection

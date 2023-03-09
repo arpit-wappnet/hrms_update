@@ -1,7 +1,8 @@
 @extends('layouts.main')
-@section('main-container')
+@section('main-container').
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 <body>
 <!-- Preloader -->
@@ -13,14 +14,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top m-b-0">
       <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-        <div class="top-left-part"><a class="logo" href="index.html"><b><!--This is dark logo icon--><img src="../plugins/images/eliteadmin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="../plugins/images/eliteadmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><!--This is dark logo text--><img src="../plugins/images/eliteadmin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="../plugins/images/eliteadmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
+        <div class="top-left-part"><a class="logo" href="index.html"><b><!--This is dark logo icon--><img src="{{url('plugins/images/eliteadmin-logo.png')}}" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="{{url('plugins/images/eliteadmin-logo-dark.png')}}" alt="home" class="light-logo" /></b><span class="hidden-xs"><!--This is dark logo text--><img src="{{url('plugins/images/eliteadmin-text.png')}}" alt="home" class="dark-logo" /><!--This is light logo text--><img src="{{url('plugins/images/eliteadmin-text-dark.png')}}" alt="home" class="light-logo" /></span></a></div>
         <ul class="nav navbar-top-links navbar-left hidden-xs">
           <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
           <li>
-            <form role="search" class="app-search hidden-xs">
-              <input type="text" placeholder="Search..." class="form-control">
-              <a href=""><i class="fa fa-search"></i></a>
-            </form>
+
           </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
@@ -112,7 +110,7 @@
                 <ul>
                   <li class="dropdown-header">Forms Elements</li>
                   <li><a href="form-basic.html">Basic Forms</a></li>
-                  <li><a href="form-layout.html">Form Layout</a></li>
+                              <li><a href="form-layout.html">Form Layout</a></li>
                   <li><a href="form-advanced.html">Form Addons</a></li>
                   <li><a href="form-material-elements.html">Form Material</a></li>
                   <li><a href="form-upload.html">File Upload</a></li>
@@ -186,7 +184,7 @@
       <div class="sidebar-nav navbar-collapse slimscrollsidebar">
         <div class="user-profile">
           <div class="dropdown user-pro-body">
-            <div><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div>
+            <div><img src="{{url('plugins/images/users/varun.jpg')}}" alt="user-img" class="img-circle"></div>
             <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
                 <ul class="dropdown-menu animated flipInY">
                   <li><a href="{{ route('show.profile') }}"><i class="ti-user"></i> My Profile</a></li>
@@ -215,8 +213,15 @@
               <li> <a href="index4.html">Simpler</a> </li>
             </ul>
           </li>
-          <li><a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Holiday<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">New</span></span></a>
-
+          <li><a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Apps<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">New</span></span></a>
+            <ul class="nav nav-second-level">
+              <li><a href="chat.html">Chat-message</a></li>
+              <li><a href="javascript:void(0)" class="waves-effect">Inbox<span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                  <li> <a href="inbox.html">Mail box</a></li>
+                  <li> <a href="inbox-detail.html">Inbox detail</a></li>
+                  <li> <a href="compose.html">Compose mail</a></li>
+                </ul>
               </li>
               <li><a href="javascript:void(0)" class="waves-effect">Contacts<span class="fa arrow"></span></a>
                 <ul class="nav nav-third-level">
@@ -320,7 +325,7 @@
           <li> <a href="tables.html" class="waves-effect"><i data-icon="O" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Tables<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">7</span></span></a>
             <ul class="nav nav-second-level">
               <li><a href="basic-table.html">Basic Tables</a></li>
-              <li><a href="{{ route('users.index') }}">Data Table</a></li>
+              <li><a href="admin/userdata">Data Table</a></li>
               <li><a href="bootstrap-tables.html">Bootstrap Tables</a></li>
               <li><a href="responsive-tables.html">Responsive Tables</a></li>
               <li><a href="editable-tables.html">Editable Tables</a></li>
@@ -329,193 +334,142 @@
             </ul>
           </li>
 
-
-
-
           </li>
 
         </ul>
       </div>
     </div>
-    <!-- Left navbar-header end -->
-    <!-- Page Content -->
-    <div id="page-wrapper">
-      <div class="container-fluid">
-        <div class="row bg-title">
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Dashboard 1</h4>
-          </div>
-          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
-            <ol class="breadcrumb">
-              <li><a href="#">Dashboard</a></li>
-              <li class="active">Dashboard 1</li>
-            </ol>
-          </div>
-          <!-- /.col-lg-12 -->
+  <!-- Left navbar-header end -->
+  <!-- Page Content -->
+  <div id="page-wrapper">
+    <div class="container-fluid">
+      <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title">Holiday</h4>
         </div>
-        <!-- /.row -->
-        <div class="row">
-          <div class="col-md-12 col-lg-12 col-sm-12">
-            <div class="white-box">
-              <div class="row row-in">
-                <div class="col-lg-3 col-sm-6 row-in-br">
-                  <div class="col-in row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic" ></i>
-                      <h5 class="text-muted vb">MYNEW CLIENTS</h5>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                      <h3 class="counter text-right m-t-15 text-danger">23</h3>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 row-in-br  b-r-none">
-                  <div class="col-in row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
-                      <h5 class="text-muted vb">NEW PROJECTS</h5>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                      <h3 class="counter text-right m-t-15 text-megna">169</h3>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-megna" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 row-in-br">
-                  <div class="col-in row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
-                      <h5 class="text-muted vb">NEW INVOICES</h5>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                      <h3 class="counter text-right m-t-15 text-primary">157</h3>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6  b-0">
-                  <div class="col-in row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe016;"></i>
-                      <h5 class="text-muted vb">All PROJECTS</h5>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                      <h3 class="counter text-right m-t-15 text-success">431</h3>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+          <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
+          <ol class="breadcrumb">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Holiday</a></li>
+          </ol>
         </div>
-        <!--row -->
-        <!-- /.row -->
-
-        <!-- /.row -->
-        <!--row -->
-
-        <!-- /.row -->
-        <!-- .right-sidebar -->
-        <div class="right-sidebar">
-          <div class="slimscrollright">
-            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-            <div class="r-panel-body">
-              <ul>
-                <li><b>Layout Options</b></li>
-                <li>
-                  <div class="checkbox checkbox-info">
-                    <input id="checkbox1" type="checkbox" class="fxhdr">
-                    <label for="checkbox1"> Fix Header </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="checkbox checkbox-success">
-                    <input id="checkbox4" type="checkbox" class="open-close">
-                    <label for="checkbox4"> Toggle Sidebar </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="checkbox checkbox-warning">
-                    <input id="checkbox2" type="checkbox" class="fxsdr">
-                    <label for="checkbox2"> Fix Sidebar </label>
-                  </div>
-                </li>
-
-              </ul>
-              <ul id="themecolors" class="m-t-20">
-                <li><b>With Light sidebar</b></li>
-                <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
-                <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
-                <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
-                <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
-                <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
-                <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
-                <li><b>With Dark sidebar</b></li>
-                <br/>
-                <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
-                <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
-                <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
-
-                <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
-                <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
-                <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
-              </ul>
-              <ul class="m-t-20 chatonline">
-                <li><b>Chat option</b></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img"  class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img"  class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- /.right-sidebar -->
+        <!-- /.col-lg-12 -->
       </div>
-      <!-- /.container-fluid -->
-      <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
-    </div>
-    <!-- /#page-wrapper -->
+      <!-- /row -->
+      <div>
+      <button type="button" class="btn btn-primary" data-toggle="modal"><a href="/addholiday">Add HoliDay </a></button>
+      </div>
+      <br>
+    @php
+               $today_date = date('d F, Y'); // sets the $today_date variable with the current date in the format "d F, Y" (e.g. "09 March, 2023")
 
-<!-- /#wrapper -->
+
+     @endphp
+      <div class="row">
+        <div class="col-md-12">
+          <div class="white-box">
+            <h3 class="box-title m-b-0">HoliDay</h3>
+            <div class="table-responsive">
+            <table id="myTable" class="table user_datatable table-bordered data-table table table-striped custom-table datatable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Title </th>
+                        <th>Holiday Date</th>
+                        <th>Day</th>
+                        <th class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($holiday as $key=>$items )
+                        @if(($today_date <= $items->date_holiday))
+                            <tr class="holiday-upcoming">
+                                <td hidden class="id">{{ $items->id }}</td>
+                                <td>{{ ++$key }}</td>
+                                <td class="holidayName">{{ $items->name_holiday }}</td>
+                                <td hidden class="holidayDate">{{$items->date_holiday }}</td>
+                                <td>{{date('d F, Y',strtotime($items->date_holiday)) }}</td>
+                                <td>{{date('l',strtotime($items->date_holiday)) }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item userUpdate" data-toggle="modal" data-id="'.$items->id.'" data-target="#edit_holiday"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_holiday"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+<!-- Edit Holiday Modal -->
+<div class="modal custom-modal fade" id="edit_holiday" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Holiday</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" id="e_id" value="">
+                    <div class="form-group">
+                        <label>Holiday Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="holidayName_edit" name="holidayName" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Holiday Date <span class="text-danger">*</span></label>
+                        <div class="cal-icon">
+                            <input type="text" class="form-control datetimepicker" id="holidayDate_edit" name="holidayDate" value="">
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button type="submit" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Holiday Modal -->
+
+
 <!-- jQuery -->
 <script src="{{url('plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="{{url('bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- Menu Plugin JavaScript -->
 <script src="{{url('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js')}}"></script>
-
 <!--slimscroll JavaScript -->
 <script src="{{url('js/jquery.slimscroll.js')}}"></script>
 <!--Wave Effects -->
 <script src="{{url('js/waves.js')}}"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{{url('js/custom.min.js')}}"></script>
+<script src="{{url('plugins/bower_components/datatables/jquery.dataTables.min.js')}}"></script>
+{{-- popup js --}}
+
+<!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+
 <!--Style Switcher -->
-<script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
-
-
-
+<script src="{{url('plugins/bower_components/styleswitcher/jQuery.style.switcher.js'"></script>
 </body>
 </html>
 @endsection
-

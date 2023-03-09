@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('main-container')
+@section('main-container').
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
@@ -17,10 +17,7 @@
         <ul class="nav navbar-top-links navbar-left hidden-xs">
           <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
           <li>
-            <form role="search" class="app-search hidden-xs">
-              <input type="text" placeholder="Search..." class="form-control">
-              <a href=""><i class="fa fa-search"></i></a>
-            </form>
+
           </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
@@ -215,23 +212,9 @@
               <li> <a href="index4.html">Simpler</a> </li>
             </ul>
           </li>
-          <li><a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Apps<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">New</span></span></a>
-            <ul class="nav nav-second-level">
-              <li><a href="chat.html">Chat-message</a></li>
-              <li><a href="javascript:void(0)" class="waves-effect">Inbox<span class="fa arrow"></span></a>
-                <ul class="nav nav-third-level">
-                  <li> <a href="inbox.html">Mail box</a></li>
-                  <li> <a href="inbox-detail.html">Inbox detail</a></li>
-                  <li> <a href="compose.html">Compose mail</a></li>
-                </ul>
+          <li><a href="{{ route('admin.holiday') }}" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Holidays<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">New</span></span></a>
               </li>
-              <li><a href="javascript:void(0)" class="waves-effect">Contacts<span class="fa arrow"></span></a>
-                <ul class="nav nav-third-level">
-                  <li> <a href="contact.html">Contact1</a></li>
-                  <li> <a href="contact2.html">Contact2</a></li>
-                  <li> <a href="contact-detail.html">Contact Detail</a></li>
-                </ul>
-              </li>
+
             </ul>
           </li>
           <li> <a href="#" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">UI Elements<span class="fa arrow"></span> <span class="label label-rouded label-info pull-right">13</span> </span></a>
@@ -327,7 +310,7 @@
           <li> <a href="tables.html" class="waves-effect"><i data-icon="O" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Tables<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">7</span></span></a>
             <ul class="nav nav-second-level">
               <li><a href="basic-table.html">Basic Tables</a></li>
-              <li><a href="/userdata">Data Table</a></li>
+              <li><a href="admin/userdata">Data Table</a></li>
               <li><a href="bootstrap-tables.html">Bootstrap Tables</a></li>
               <li><a href="responsive-tables.html">Responsive Tables</a></li>
               <li><a href="editable-tables.html">Editable Tables</a></li>
@@ -335,9 +318,6 @@
               <li><a href="jsgrid.html">JsGrid Tables</a></li>
             </ul>
           </li>
-
-
-
 
           </li>
 
@@ -353,10 +333,8 @@
             <h4 class="page-title">Dashboard 1</h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
             <ol class="breadcrumb">
               <li><a href="#">Dashboard</a></li>
-              <li class="active">Dashboard 1</li>
             </ol>
           </div>
           <!-- /.col-lg-12 -->
@@ -430,13 +408,7 @@
             </div>
           </div>
         </div>
-        <!--row -->
-        <!-- /.row -->
 
-        <!-- /.row -->
-        <!--row -->
-
-        <!-- /.row -->
         <!-- .right-sidebar -->
         <div class="right-sidebar">
           <div class="slimscrollright">
