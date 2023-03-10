@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('main-container').
+@section('main-container')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
@@ -17,7 +17,10 @@
         <ul class="nav navbar-top-links navbar-left hidden-xs">
           <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
           <li>
-
+            <form role="search" class="app-search hidden-xs">
+              <input type="text" placeholder="Search..." class="form-control">
+              <a href=""><i class="fa fa-search"></i></a>
+            </form>
           </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
@@ -109,7 +112,7 @@
                 <ul>
                   <li class="dropdown-header">Forms Elements</li>
                   <li><a href="form-basic.html">Basic Forms</a></li>
-                              <li><a href="form-layout.html">Form Layout</a></li>
+                  <li><a href="form-layout.html">Form Layout</a></li>
                   <li><a href="form-advanced.html">Form Addons</a></li>
                   <li><a href="form-material-elements.html">Form Material</a></li>
                   <li><a href="form-upload.html">File Upload</a></li>
@@ -206,15 +209,29 @@
           <li class="nav-small-cap m-t-10">--- Main Menu</li>
           <li> <a href="index.html" class="waves-effect active"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> <span class="label label-rouded label-custom pull-right">4</span></span></a>
             <ul class="nav nav-second-level">
-              <li> <a href="index.html">Minimalistic</a> </li>
-              <li> <a href="index2.html">Demographical</a> </li>
+              <li> <a href="{{ route('admin.holiday') }}">Holidays</a> </li>
+              <li> <a href="">Demographical</a> </li>
               <li> <a href="index3.html">Analitical</a> </li>
               <li> <a href="index4.html">Simpler</a> </li>
             </ul>
           </li>
-          <li><a href="{{ route('admin.holiday') }}" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Holidays<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">New</span></span></a>
+          <li><a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Apps<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">New</span></span></a>
+            <ul class="nav nav-second-level">
+              <li><a href="chat.html">Chat-message</a></li>
+              <li><a href="javascript:void(0)" class="waves-effect">Inbox<span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                  <li> <a href="inbox.html">Mail box</a></li>
+                  <li> <a href="inbox-detail.html">Inbox detail</a></li>
+                  <li> <a href="compose.html">Compose mail</a></li>
+                </ul>
               </li>
-
+              <li><a href="javascript:void(0)" class="waves-effect">Contacts<span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                  <li> <a href="contact.html">Contact1</a></li>
+                  <li> <a href="contact2.html">Contact2</a></li>
+                  <li> <a href="contact-detail.html">Contact Detail</a></li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li> <a href="#" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">UI Elements<span class="fa arrow"></span> <span class="label label-rouded label-info pull-right">13</span> </span></a>
@@ -319,6 +336,9 @@
             </ul>
           </li>
 
+
+
+
           </li>
 
         </ul>
@@ -330,11 +350,13 @@
       <div class="container-fluid">
         <div class="row bg-title">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Dashboard 1</h4>
+            <h4 class="page-title">Dashboard </h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
             <ol class="breadcrumb">
               <li><a href="#">Dashboard</a></li>
+              <li class="active">Dashboard</li>
             </ol>
           </div>
           <!-- /.col-lg-12 -->
@@ -347,10 +369,10 @@
                 <div class="col-lg-3 col-sm-6 row-in-br">
                   <div class="col-in row">
                     <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic" ></i>
-                      <h5 class="text-muted vb">MYNEW CLIENTS</h5>
+                      <h5 class="text-muted vb">User</h5>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                      <h3 class="counter text-right m-t-15 text-danger">23</h3>
+                      <h3 class="counter text-right m-t-15 text-danger">20</h3>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                       <div class="progress">
@@ -409,71 +431,71 @@
           </div>
         </div>
 
-        <!-- .right-sidebar -->
-        <div class="right-sidebar">
-          <div class="slimscrollright">
-            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-            <div class="r-panel-body">
-              <ul>
-                <li><b>Layout Options</b></li>
-                <li>
-                  <div class="checkbox checkbox-info">
-                    <input id="checkbox1" type="checkbox" class="fxhdr">
-                    <label for="checkbox1"> Fix Header </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="checkbox checkbox-success">
-                    <input id="checkbox4" type="checkbox" class="open-close">
-                    <label for="checkbox4"> Toggle Sidebar </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="checkbox checkbox-warning">
-                    <input id="checkbox2" type="checkbox" class="fxsdr">
-                    <label for="checkbox2"> Fix Sidebar </label>
-                  </div>
-                </li>
+       <!-- .right-sidebar -->
+       <div class="right-sidebar">
+        <div class="slimscrollright">
+          <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+          <div class="r-panel-body">
+            <ul>
+              <li><b>Layout Options</b></li>
+              <li>
+                <div class="checkbox checkbox-info">
+                  <input id="checkbox1" type="checkbox" class="fxhdr">
+                  <label for="checkbox1"> Fix Header </label>
+                </div>
+              </li>
+              <li>
+                <div class="checkbox checkbox-success">
+                  <input id="checkbox4" type="checkbox" class="open-close">
+                  <label for="checkbox4"> Toggle Sidebar </label>
+                </div>
+              </li>
+              <li>
+                <div class="checkbox checkbox-warning">
+                  <input id="checkbox2" type="checkbox" class="fxsdr">
+                  <label for="checkbox2"> Fix Sidebar </label>
+                </div>
+              </li>
 
-              </ul>
-              <ul id="themecolors" class="m-t-20">
-                <li><b>With Light sidebar</b></li>
-                <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
-                <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
-                <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
-                <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
-                <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
-                <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
-                <li><b>With Dark sidebar</b></li>
-                <br/>
-                <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
-                <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
-                <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
+            </ul>
+            <ul id="themecolors" class="m-t-20">
+              <li><b>With Light sidebar</b></li>
+              <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
+              <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+              <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+              <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+              <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+              <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
+              <li><b>With Dark sidebar</b></li>
+              <br/>
+              <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+              <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+              <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
 
-                <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
-                <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
-                <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
-              </ul>
-              <ul class="m-t-20 chatonline">
-                <li><b>Chat option</b></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img"  class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img"  class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a></li>
-                <li><a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a></li>
-              </ul>
-            </div>
+              <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+              <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+              <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+            </ul>
+            <ul class="m-t-20 chatonline">
+              <li><b>Chat option</b></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img"  class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img"  class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a></li>
+            </ul>
           </div>
         </div>
-        <!-- /.right-sidebar -->
       </div>
-      <!-- /.container-fluid -->
-      <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+      <!-- /.right-sidebar -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+  </div>
+  <!-- /#page-wrapper -->
 
 <!-- /#wrapper -->
 <!-- jQuery -->

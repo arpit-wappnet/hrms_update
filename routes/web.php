@@ -6,7 +6,6 @@ use App\Http\Controllers\ProfileUpdatecontroller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HolidayController;
 
-
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Auth\Events\Login;
