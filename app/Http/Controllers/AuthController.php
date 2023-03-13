@@ -35,11 +35,13 @@ class AuthController extends Controller
                 // admin role == 1
                 // user  role == 0
                 if(Auth::user()->role == '1'){
-                    return redirect()->route('dashbord');
+                    return redirect()->route('dashbord')->with('success', 'You are successfully logged in');
+                    // return redirect('/dashboard')->with('success', 'You are successfully logged in');
+
 
                 } elseif(Auth::user()->role == '0') {
 
-                    return redirect()->route('user.dashbord');
+                    return redirect()->route('user.dashbord')->with('success', 'You are successfully logged in');
                 }
 
 

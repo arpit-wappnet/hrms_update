@@ -67,17 +67,22 @@ Route::prefix('user')->middleware('auth')->group( Function(){
         Route::get('/userdata', 'User_show')->name('users.index');
     });
 });
-// -----------------------------HoliDay----------------------------------------//
+// -----------------------------HoliDay For Admin----------------------------------------//
 Route::prefix('admin')->middleware('auth','isAdmin')->group( Function(){
     Route::controller(HolidayController::class)->middleware('auth')->group(function () {
-        Route::get('admin/holiday', 'holiday_show')->name('admin.holiday');
+       Route::get('admin/holiday', 'index')->name('admin.holiday');
+
     });
 });
 Route::controller(HolidayController::class)->middleware('auth','isAdmin')->group(function () {
-    Route::get('/addholiday', 'add_holiday_form');
     Route::post('/add-holidays', 'add_holiday')->name('add.holiday');
-    Route::get('/holiday-data', 'holiday_show')->name('show.holiday');
+    Route::get('admin/admin/holiday/{id}/edit', 'edit_holiday');
+    Route::Delete('add-holidays/{id}', 'destroy');
 });
+// -----------------------------HoliDay For User----------------------------------------//
+Route::controller(HolidayController::class)->middleware('auth')->group(function () {
+    Route::get('user/holiday', 'index_user')->name('user.holiday');
+ });
 
 
 
