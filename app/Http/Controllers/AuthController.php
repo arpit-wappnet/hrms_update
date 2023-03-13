@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\User;
@@ -35,8 +36,11 @@ class AuthController extends Controller
                 // admin role == 1
                 // user  role == 0
                 if(Auth::user()->role == '1'){
+
+                    Toastr::success('Logout successfully :)','Success');
+
                     return redirect()->route('dashbord')->with('success', 'You are successfully logged in');
-                    // return redirect('/dashboard')->with('success', 'You are successfully logged in');
+
 
 
                 } elseif(Auth::user()->role == '0') {
