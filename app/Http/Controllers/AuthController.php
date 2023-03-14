@@ -13,12 +13,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Interfaces\AuthRepositoryInterface;
+
 
 /**
  * Summary of AuthController
  */
 class AuthController extends Controller
 {
+
+    protected $userRepository;
+
+    public function __construct(AuthRepositoryInterface  $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
     public function index() : View
     {
         return view('index');
@@ -31,39 +40,28 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
 
-                 if(Auth::check()){
-                // admin role == 1
-                // user  role == 0
-                if(Auth::user()->role == '1'){
+        $user = $this->userRepository->getAllUser($credentials['email']);
 
-                    Toastr::success('Logout successfully :)','Success');
+        if ($user && Auth::attempt($credentials)) {
+            // admin role == 1
+            // user  role == 0
+            if(Auth::user()->role == '1'){
 
-                    return redirect()->route('dashbord')->with('success', 'You are successfully logged in');
+                Toastr::success('Logout successfully :)','Success');
 
+                return redirect()->route('dashbord')->with('success', 'You are successfully logged in');
 
+            } elseif(Auth::user()->role == '0') {
 
-                } elseif(Auth::user()->role == '0') {
-
-                    return redirect()->route('user.dashbord')->with('success', 'You are successfully logged in');
-                }
-
-
-            } else {
-
-
-                return redirect('/')->with('massage','login to Access Admin');
+                return redirect()->route('user.dashbord')->with('success', 'You are successfully logged in');
             }
 
         }
+        return redirect()->back()->with('error', 'Invalid email or password');
 
     }
     public function logout()  : RedirectResponse
