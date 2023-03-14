@@ -397,7 +397,7 @@
             <br>
             <div class="row">
               <div class="col-sm-12 col-xs-12">
-                <form action="{{ route('update.user') }}" method="post">
+                <form action="{{ route('update.user', $user->id) }}" method="post">
                     @csrf
                   <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>

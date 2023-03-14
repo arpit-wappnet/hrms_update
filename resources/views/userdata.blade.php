@@ -382,11 +382,16 @@
           </div>
         </div>
         <script type="text/javascript">
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+    });
            jQuery(function($){
     var table = $('.user_datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('users.index') }}",
+        ajax: "{{ route('admin.index') }}",
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},

@@ -51,15 +51,15 @@ Route::controller(ProfileUpdateController::class)->group(function () {
 // --------------------------Get Admin User List And management---------------------------//
 Route::prefix('admin')->middleware('auth','isAdmin')->group( Function(){
     Route::controller(UserController::class)->middleware('auth')->group(function () {
-        Route::get('admin/userdata', 'User_data_show')->name('admin.index');
+        Route::get('admin/userdata', 'userDataShow')->name('admin.index');
     });
 });
 Route::controller(UserController::class)->middleware('auth','isAdmin')->group(function () {
         Route::post('/add-user','add_user')->name('user.add');  // New User add
-        Route::get('/adduser', 'add_user_show');
-        Route::get('/update/{id}', 'edit')->name('users.edit'); // edit User page show
-        Route::post('/update', 'user_edit')->name('update.user'); // edit user
-        Route::delete('/delete/{id}', 'destroy')->name('users.delete'); // delete user
+        Route::get('/adduser', 'addUserShow');
+        Route::get('users/{id}/edit', 'edit')->name('users.edit'); // edit User page show
+        Route::post('/update/{id}', 'userEdit')->name('update.user'); // edit user
+        Route::get('/users/{id}', 'destroy')->name('users.destroy');// delete user
 });
 // -----------------------------Get User List Show----------------------------------------//
 Route::prefix('user')->middleware('auth')->group( Function(){

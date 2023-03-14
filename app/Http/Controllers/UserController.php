@@ -4,46 +4,77 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Interfaces\UserRepositoryInterface;
+
 /**
  * Summary of UserController
  */
 class UserController extends Controller
 {
+    private $userRepository;
+
+    public function __construct(UserRepositoryInterface  $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
     /**
      * Summary of admin_user_data_show
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      */
-    public function User_data_show(Request $request)
+    public function userDataShow(Request $request)
     {
             if ($request->ajax()) {
 
-            $data = User::all();
+            $data = $this->userRepository->all();
             return DataTables($data)->addIndexColumn()
-                ->addColumn("action",'<form action="{{route("users.delete",$id) }}" method="POST">
-                @csrf
-                @method("DELETE")
-                    <a  href="{{route("users.edit","$id") }}" title="Edit"  >
-                    <i class="fa fa-edit" style="font-size:20px;color:green "> </i>
-                </a>
-                <button type ="submit" title="Delete" style="font-size:24px;color:red;background-color:white;border:0px;">
-                        <i class="fa fa-trash"  style="font-size:20px;color:red;background-color:white;"></i>
-                    </button>
-    </form>')
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
+            ->addColumn('action', function ($user) {
+                $actionBtn = '<a href="/users/' . $user->id . '/edit" class="edit btn btn-primary btn-sm">Edit</a>';
 
+                $actionBtn .= '<a href="' . route('users.destroy', $user->id) . '" class="delete btn btn-danger btn-sm ml-2" data-method="delete" data-confirm="Are you sure you want to delete this user?">Delete</a>';
+
+                return $actionBtn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
 
         }
-
          return view('userdata');
 
     }
 
-    public function add_user_show(): \Illuminate\Contracts\View\View
+    public function edit($id): \Illuminate\Contracts\View\View
+        {
+            $user = $this->userRepository->find($id);
+            return view('userupdate',compact('user'));
+        }
+        public function userEdit(Request $request, $id)
+        {
+            $data = $request->validate([
+                'id' => 'required|numeric', // Ensure the ID is a numeric value
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|string|max:255|unique:users,email,'.$request->id // Add unique validation rule
+            ]);
+
+            $user = $this->userRepository->update($data, $id);
+            return redirect()->route('admin.index')->with('success', 'User updated successfully.');
+        }
+
+
+        /**
+         * Summary of destroy
+         * @param mixed $id
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function destroy($id)
+        {
+            $this->userRepository->delete($id);
+            return redirect()->route('admin.index')->with('success', 'Success! post is deleted');
+        }
+        public function addUserShow(): \Illuminate\Contracts\View\View
     {
         return view('adduser');
     }
@@ -62,43 +93,9 @@ class UserController extends Controller
         return redirect("admin/admin/userdata")->withSuccess('Great! You have Successfully Register Your data');
     }
 
-    public function edit($id): \Illuminate\Contracts\View\View
-        {
-            $user=User::find($id);
-            return view('userupdate',compact('user'));
-
-        }
-        public function user_edit(Request $request)
-        {
-
-            $request->validate([
-                'id' => 'required|numeric', // Ensure the ID is a numeric value
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|string|max:255|unique:users,email,'.$request->id // Add unique validation rule
-            ]);
-
-            $user = User::findOrFail($request->id); // Use findOrFail to throw an exception if user is not found
-
-            $user->update($request->only('name','email'));
-
-            return redirect()->route('admin.index')->with('success', 'User updated successfully.');
-        }
-
-
-        public function destroy($id): \Illuminate\Http\RedirectResponse
-        {
-            $user = User::find($id); // Find the user by ID
-            if(!$user) {
-                return redirect()->route('admin.index')->with('success', 'User not found.');
-            }
-            $user->delete(); // Delete the user
-            return redirect()->route('admin.index')->with('success', 'User deleted successfully.');
-        }
-
         public function User_show(Request $request)
         {
                 if ($request->ajax()) {
-
                 $data = User::all();
                 return DataTables($data)->addIndexColumn()
                     ->addColumn("action",'<form action="{{route("users.delete",$id) }}" method="POST">
