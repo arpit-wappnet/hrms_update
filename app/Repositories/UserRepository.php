@@ -37,5 +37,14 @@ class UserRepository implements UserRepositoryInterface
             return $post->delete();
         }
     }
+
+    public function addUser($request){
+        return User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+
+        ]);
+    }
 }
 

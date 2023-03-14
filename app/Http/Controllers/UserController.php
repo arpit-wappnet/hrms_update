@@ -88,9 +88,12 @@ class UserController extends Controller
             'password' => 'required|min:6',
         ]);
 
-
-        User::create($request->all());
-        return redirect("admin/admin/userdata")->withSuccess('Great! You have Successfully Register Your data');
+        $post = $this->userRepository->addUser($request);
+            if ($post) {
+                return redirect("/admin/admin/userdata")->with('success', 'Success! Add User complate');
+            } else {
+                return back()->with('failed', 'Failed! Add User');
+            }
     }
 
         public function User_show(Request $request)
