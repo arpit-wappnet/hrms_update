@@ -34,7 +34,7 @@ Route::controller(AuthController::class)->group(function () {
 // -----------------------------Registration----------------------------------------//
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'register');
-    Route::post('/register-data', 'Register_user')->name('register.data');
+    Route::post('/register-data', 'registerData')->name('register.data');
 });
 // -----------------------------Dashboard----------------------------------------//
 Route::controller(DashbordController::class)->group(function () {

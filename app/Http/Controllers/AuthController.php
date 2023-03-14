@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
+/**
+ * Summary of AuthController
+ */
 class AuthController extends Controller
 {
     public function index() : View
@@ -21,7 +24,12 @@ class AuthController extends Controller
         return view('index');
     }
 
-    public function login(Request $request) : \Illuminate\Http\RedirectResponse
+    /**
+     * Summary of login
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
