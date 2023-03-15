@@ -71,7 +71,6 @@ Route::prefix('user')->middleware('auth')->group( Function(){
 Route::prefix('admin')->middleware('auth','isAdmin')->group( Function(){
     Route::controller(HolidayController::class)->middleware('auth')->group(function () {
        Route::get('admin/holiday', 'index')->name('admin.holiday');
-
     });
 });
 Route::controller(HolidayController::class)->middleware('auth','isAdmin')->group(function () {

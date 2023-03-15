@@ -8,6 +8,8 @@ use App\Interfaces\AuthRepositoryInterface;
 use App\Repositories\AuthRepository;
 use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\UserRepository;
+use App\Interfaces\HolidayRepositoryInterface;
+use App\Repositories\HolidayRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -20,6 +22,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(HolidayRepositoryInterface::class, HolidayRepository::class);
     }
 
     /**
