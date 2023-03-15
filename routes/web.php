@@ -68,14 +68,14 @@ Route::prefix('user')->middleware('auth')->group( Function(){
     });
 });
 // -----------------------------HoliDay For Admin----------------------------------------//
-Route::prefix('admin')->middleware('auth','isAdmin')->group( Function(){
+Route::prefix('admin')->middleware('auth')->group( Function(){
     Route::controller(HolidayController::class)->middleware('auth')->group(function () {
        Route::get('admin/holiday', 'index')->name('admin.holiday');
     });
 });
-Route::controller(HolidayController::class)->middleware('auth','isAdmin')->group(function () {
-    Route::post('/add-holidays', 'add_holiday')->name('add.holiday');
-    Route::get('admin/admin/holiday/{id}/edit', 'edit_holiday');
+Route::controller(HolidayController::class)->middleware('auth')->group(function () {
+    Route::post('/add-holidays', 'addHoliday')->name('add.holiday');
+    Route::get('admin/admin/holiday/{id}/edit', 'editHoliday');
     Route::Delete('add-holidays/{id}', 'destroy');
 });
 // -----------------------------HoliDay For User----------------------------------------//

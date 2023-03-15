@@ -492,7 +492,7 @@
         $('#saveBtn').val("create-product");
         $('#product_id').val('');
         $('#productForm').trigger("reset");
-        $('#modelHeading').html("Create New Product");
+        $('#modelHeading').html("Create New Holiday");
         $('#ajaxModel').modal('show');
     });
 

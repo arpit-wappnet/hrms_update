@@ -5,21 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Holiday;
 use Yajra\DataTables\Facades\DataTables;
+use App\Interfaces\HolidayRepositoryInterface;
+use PhpParser\Node\Stmt\Return_;
 
 class HolidayController extends Controller
 {
+    private $holidayRepository;
+
+    public function __construct(HolidayRepositoryInterface  $holidayRepository)
+    {
+        $this->holidayRepository = $holidayRepository;
+    }
     public function index(Request $request)
     {
 
         if ($request->ajax()) {
 
-            $data = Holiday::latest()->get();
-
+            $data = $this->holidayRepository->all();
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
 
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm" id ="editProduct">Edit</a>';
+                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm" id ="editProduct">Edit</a>';
 
                            $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
 
@@ -38,17 +45,18 @@ class HolidayController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function add_holiday(Request $request)
+    public function addHoliday(Request $request)
     {
-        Holiday::updateOrCreate([
-                    'id' => $request->product_id
-                ],
-                [
-                    'name_holiday' => $request->name,
-                    'date_holiday' => $request->date
-                ]);
 
-        return response()->json(['success'=>'Product saved successfully.']);
+        $request->validate([
+            'name' => 'required',
+            'date' => 'required',
+        ]);
+
+        $post = $this->holidayRepository->addHoliday($request);
+            if ($post) {
+                return response()->json(['success'=>'Product saved successfully.']);
+            }
     }
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +64,7 @@ class HolidayController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit_holiday($id)
+    public function editHoliday($id)
     {
         $product = Holiday::find($id);
         return response()->json($product);
@@ -89,5 +97,4 @@ class HolidayController extends Controller
 
         return view('user.holiday');
     }
-
 }

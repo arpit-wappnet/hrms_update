@@ -32,7 +32,7 @@ class UserController extends Controller
             $data = $this->userRepository->all();
             return DataTables($data)->addIndexColumn()
             ->addColumn('action', function ($user) {
-                $actionBtn = '<a href="/users/' . $user->id . '/edit" class="edit btn btn-primary btn-sm">Edit</a>';
+                $actionBtn = '<a href="/users/' . $user->id . '/edit" class="edit btn btn-primary btn-sm">Edit</a><br><br>';
 
                 $actionBtn .= '<a href="' . route('users.destroy', $user->id) . '" class="delete btn btn-danger btn-sm ml-2" data-method="delete" data-confirm="Are you sure you want to delete this user?">Delete</a>';
 
